@@ -1,3 +1,58 @@
-name: Your New Jekyll Site
-markdown: redcarpet
-pygments: true
+# --- Site settings -----------------------------------------------------------
+title: Siddhu
+tagline: Technology Risk · Writing · Code
+description: >-
+  Notes on technology risk, non-financial risk, and the systems I build
+  on the side.
+author: Siddhu
+email: hello@siddhuv.com
+
+# The full URL of your site (no trailing slash). Update if you change domains.
+url: "https://siddhuv.com"
+baseurl: ""
+
+# --- GitHub handle (used to fetch and link your repos) -----------------------
+github_username: your-github-username
+
+# --- Social / contact links (leave blank to hide) ----------------------------
+social:
+  linkedin: ""      # e.g. "in/siddhu"
+  github: "your-github-username"
+  email: "hello@siddhuv.com"
+
+# --- Repositories to feature on the home page --------------------------------
+# List the repos you want to showcase, in the order you want them shown.
+# "name" must match the repo name on GitHub exactly.
+featured_repos:
+  - name: HorizonScan
+    blurb: Daily NFR intelligence digest — geopolitical, cyber, and operational risk signals for a GCC banking context.
+    language: Python
+  - name: okf-authoring
+    blurb: A Claude skill for authoring vendor-neutral Open Knowledge Format bundles.
+    language: Markdown
+  - name: FaithFlow
+    blurb: A Flutter + Supabase mobile app.
+    language: Dart
+
+# --- Build settings ----------------------------------------------------------
+markdown: kramdown
+highlighter: rouge
+permalink: /writing/:title/
+timezone: Asia/Kuwait
+
+paginate: 6
+paginate_path: "/writing/page:num/"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# jekyll-feed / seo-tag are on the GitHub Pages allow-list, so they work
+# without a custom Actions build.
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

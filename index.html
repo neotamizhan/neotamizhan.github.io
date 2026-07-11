@@ -1,13 +1,88 @@
 ---
 layout: default
-title: Your New Jekyll Site
 ---
+<section class="wrap hero">
+  <span class="eyebrow">Technology Risk · GRC · Kuwait</span>
+  <h1>Notes on risk, and the systems I build around it.</h1>
+  <p class="lede">
+    I lead non-financial risk in a regulated banking environment — technology
+    risk, cyber governance, third-party risk, operational resilience. This is
+    where I write about that work, and where I keep the things I build on the side.
+  </p>
+</section>
 
-<div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
+<!-- ============================== CODE ================================== -->
+<section class="section" id="code">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Register · Repositories</span>
+        <h2>Code</h2>
+      </div>
+      <span class="count" id="repo-count"></span>
+    </div>
+
+    <div class="ledger" id="repo-ledger">
+      {%- comment -%}
+        Instant-render fallback from _config.yml. The script below replaces
+        these with live GitHub data (stars, language, updated date) on load.
+      {%- endcomment -%}
+      {%- for repo in site.featured_repos -%}
+      <div class="repo">
+        <span class="repo-name">
+          <a href="https://github.com/{{ site.github_username }}/{{ repo.name }}">{{ repo.name }}</a>
+        </span>
+        <span class="repo-meta">
+          {%- if repo.language -%}<span class="lang">{{ repo.language }}</span>{%- endif -%}
+        </span>
+        <p class="repo-blurb">{{ repo.blurb }}</p>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- ============================= WRITING =============================== -->
+<section class="section" id="writing">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Log · Latest entries</span>
+        <h2>Writing</h2>
+      </div>
+      <span class="count">{{ site.posts | size }} total</span>
+    </div>
+
+    <div class="entries">
+      {%- for post in paginator.posts -%}
+      <article class="entry">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+        <div>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          {%- if post.excerpt -%}<p>{{ post.excerpt | strip_html | truncate: 160 }}</p>{%- endif -%}
+          {%- if post.tags and post.tags != empty -%}
+          <div class="tags">
+            {%- for tag in post.tags -%}<span class="tag">{{ tag }}</span>{%- endfor -%}
+          </div>
+          {%- endif -%}
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginator.total_pages > 1 -%}
+    <div class="pager">
+      {%- if paginator.previous_page -%}
+        <a href="{{ paginator.previous_page_path | relative_url }}">← newer</a>
+      {%- else -%}<span class="disabled">← newer</span>{%- endif -%}
+      <span>{{ paginator.page }} / {{ paginator.total_pages }}</span>
+      {%- if paginator.next_page -%}
+        <a href="{{ paginator.next_page_path | relative_url }}">older →</a>
+      {%- else -%}<span class="disabled">older →</span>{%- endif -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script src="{{ '/assets/js/repos.js' | relative_url }}"
+        data-user="{{ site.github_username }}"></script>
