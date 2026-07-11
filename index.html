@@ -2,73 +2,46 @@
 layout: default
 ---
 <section class="wrap hero">
-  <span class="eyebrow">Technology Risk · GRC · Kuwait</span>
-  <h1>Notes on risk, and the systems I build around it.</h1>
+  <span class="eyebrow">Literature · Art · Techno-future · Risk</span>
+  <h1>Notes from the edges of language, art, and machines.</h1>
   <p class="lede">
-    I lead non-financial risk in a regulated banking environment — technology
-    risk, cyber governance, third-party risk, operational resilience. This is
-    where I write about that work, and where I keep the things I build on the side.
+    Essays in English and தமிழ் — on what I read, what I look at, where the
+    technological future is drifting, and the things I build on the side.
   </p>
-</section>
-
-<!-- ============================== CODE ================================== -->
-<section class="section" id="code">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Register · Repositories</span>
-        <h2>Code</h2>
-      </div>
-      <span class="count" id="repo-count"></span>
-    </div>
-
-    <div class="ledger" id="repo-ledger">
-      {%- comment -%}
-        Instant-render fallback from _config.yml. The script below replaces
-        these with live GitHub data (stars, language, updated date) on load.
-      {%- endcomment -%}
-      {%- for repo in site.featured_repos -%}
-      <div class="repo">
-        <span class="repo-name">
-          <a href="https://github.com/{{ site.github_username }}/{{ repo.name }}">{{ repo.name }}</a>
-        </span>
-        <span class="repo-meta">
-          {%- if repo.language -%}<span class="lang">{{ repo.language }}</span>{%- endif -%}
-        </span>
-        <p class="repo-blurb">{{ repo.blurb }}</p>
-      </div>
-      {%- endfor -%}
-    </div>
-  </div>
 </section>
 
 <!-- ============================= WRITING =============================== -->
 <section class="section" id="writing">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">Log · Latest entries</span>
-        <h2>Writing</h2>
-      </div>
-      <span class="count">{{ site.posts | size }} total</span>
+    <div class="filters" id="filters">
+      <button class="chip is-active" data-filter="all">All</button>
+      <button class="chip" data-filter="literature">Literature</button>
+      <button class="chip" data-filter="art">Art</button>
+      <button class="chip" data-filter="techno-future">Techno-future</button>
+      <button class="chip" data-filter="technical">Technical</button>
+      <button class="chip" data-filter="lang:ta">தமிழ்</button>
     </div>
 
-    <div class="entries">
+    <div class="feed" id="feed">
       {%- for post in paginator.posts -%}
-      <article class="entry">
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-        <div>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          {%- if post.excerpt -%}<p>{{ post.excerpt | strip_html | truncate: 160 }}</p>{%- endif -%}
-          {%- if post.tags and post.tags != empty -%}
-          <div class="tags">
-            {%- for tag in post.tags -%}<span class="tag">{{ tag }}</span>{%- endfor -%}
-          </div>
+      {%- assign lang = post.lang | default: "en" -%}
+      {%- assign cat = post.category | default: "notes" -%}
+      <article class="post-item" data-category="{{ cat }}" data-lang="{{ lang }}">
+        <div class="post-meta-row">
+          <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+          <span class="post-cat">{{ cat | replace: "-", " " | capitalize }}</span>
+          {%- if lang == "ta" -%}
+            <span class="langtag ta">தமிழ்</span>
+          {%- else -%}
+            <span class="langtag en">EN</span>
           {%- endif -%}
         </div>
+        <h2 class="{% if lang == 'ta' %}ta{% endif %}"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {%- if post.excerpt -%}<p class="dek {% if lang == 'ta' %}ta{% endif %}">{{ post.excerpt | strip_html | truncate: 170 }}</p>{%- endif -%}
       </article>
       {%- endfor -%}
     </div>
+    <p class="feed-empty" id="feed-empty">Nothing here yet under this filter.</p>
 
     {%- if paginator.total_pages > 1 -%}
     <div class="pager">
@@ -84,5 +57,37 @@ layout: default
   </div>
 </section>
 
+<!-- ============================== CODE ================================== -->
+<section class="section bordered" id="code">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Things I build</span>
+      <h2>Code</h2>
+      <span class="count" id="repo-count"></span>
+    </div>
+
+    <div class="ledger" id="repo-ledger">
+      {%- comment -%}
+        Instant-render fallback from _config.yml. repos.js replaces these with
+        live GitHub data (language, stars, updated date) on load.
+      {%- endcomment -%}
+      {%- for repo in site.featured_repos -%}
+      <div class="repo">
+        <div class="repo-head">
+          <span class="repo-name">
+            <a href="https://github.com/{{ site.github_username }}/{{ repo.name }}">{{ repo.name }}</a>
+          </span>
+          <span class="repo-meta">
+            {%- if repo.language -%}<span class="lang">{{ repo.language }}</span>{%- endif -%}
+          </span>
+        </div>
+        <p class="repo-blurb">{{ repo.blurb }}</p>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/filter.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/repos.js' | relative_url }}"
         data-user="{{ site.github_username }}"></script>

@@ -65,8 +65,10 @@
         var updated = '<span class="stat">' + timeAgo(repo.updated_at) + "</span>";
         return (
           '<div class="repo">' +
-            '<span class="repo-name"><a href="' + repo.html_url + '">' + repo.name + "</a></span>" +
-            '<span class="repo-meta">' + lang + stars + updated + "</span>" +
+            '<div class="repo-head">' +
+              '<span class="repo-name"><a href="' + repo.html_url + '">' + repo.name + "</a></span>" +
+              '<span class="repo-meta">' + lang + stars + updated + "</span>" +
+            "</div>" +
             (blurb ? '<p class="repo-blurb">' + blurb + "</p>" : "") +
           "</div>"
         );

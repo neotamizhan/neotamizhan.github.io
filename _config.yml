@@ -1,9 +1,9 @@
 # --- Site settings -----------------------------------------------------------
 title: Siddhu
-tagline: Technology Risk · Writing · Code
+tagline: Literature · Art · Techno-future · Code — in English & தமிழ்
 description: >-
-  Notes on technology risk, non-financial risk, and the systems I build
-  on the side.
+  Essays on literature, art, the technological future, and risk — written in
+  English and Tamil, with the things I build on the side.
 author: Siddhu
 email: hello@siddhuv.com
 
@@ -12,12 +12,12 @@ url: "https://siddhuv.com"
 baseurl: ""
 
 # --- GitHub handle (used to fetch and link your repos) -----------------------
-github_username: your-github-username
+github_username: neotamizhan
 
 # --- Social / contact links (leave blank to hide) ----------------------------
 social:
   linkedin: ""      # e.g. "in/siddhu"
-  github: "your-github-username"
+  github: "neotamizhan"
   email: "hello@siddhuv.com"
 
 # --- Repositories to feature on the home page --------------------------------

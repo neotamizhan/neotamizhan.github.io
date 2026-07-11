@@ -1,12 +1,17 @@
 ---
 layout: default
 ---
-<article class="wrap article">
+{%- assign lang = page.lang | default: "en" -%}
+{%- assign cat = page.category | default: "notes" -%}
+<article class="wrap article{% if lang == 'ta' %} lang-ta{% endif %}">
   <a class="backlink" href="{{ '/#writing' | relative_url }}">← index</a>
   <div class="post-meta">
     <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
-    {%- if page.tags and page.tags != empty -%}
-      &nbsp;·&nbsp; {{ page.tags | join: " / " }}
+    <span class="post-cat">{{ cat | replace: "-", " " | capitalize }}</span>
+    {%- if lang == "ta" -%}
+      <span class="langtag ta">தமிழ்</span>
+    {%- else -%}
+      <span class="langtag en">EN</span>
     {%- endif -%}
   </div>
   <h1>{{ page.title }}</h1>
