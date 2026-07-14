@@ -1,12 +1,14 @@
 ---
 layout: post
 title: "செயற்கை நுண்ணறிவின் அசுர வளர்ச்சியும் அதன் கொள்கைகளும் (Policy on the AI Exponential) - டாரியோ அமோதாய்"
-date: 2026-06-01
+date: 2026-07-14
 lang: ta
 categories: [ai-policy]
 tags: [AI, policy, governance, risk]
 excerpt: "ஜூன் 2026 — செயற்கை நுண்ணறிவின் அசுர வளர்ச்சிக்கு ஏற்ப நமது கொள்கை கட்டமைப்புகளை மறுவடிவமைக்க வேண்டிய அவசியம் குறித்து அந்திராபிக் நிறுவனத்தின் தலைவர் டாரியோ அமோதாய் எழுதிய கட்டுரையின் தமிழாக்கம."
 ---
+
+[Original English Essay by Dario Amodei](https://darioamodei.com/post/policy-on-the-ai-exponential)
 
 *ஜூன் 2026*
 
